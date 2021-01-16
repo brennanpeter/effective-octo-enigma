@@ -16,3 +16,7 @@ https://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mouse
 and then merging that with the multiplayer paradigm found here:
 http://buildnewgames.com/real-time-multiplayer/
 
+
+THIS IS IT BOIS:
+https://github.com/Leimi/drawingboard.js/
+
