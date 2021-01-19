@@ -6,6 +6,7 @@
   "dependencies": {
     "fabric": "^4.3.0",
     "ffmpeg": "^0.0.4",
+    "file-dialog": "0.0.8",
     "uniq": "^1.0.1"
   },
   "devDependencies": {},
