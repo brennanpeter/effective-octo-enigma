@@ -4,7 +4,7 @@
   "description": "TODO:",
   "main": "index.js",
   "dependencies": {
-    "fabric": "^4.3.0",
+    "fabric": "^4.3.1",
     "ffmpeg": "^0.0.4",
     "file-dialog": "0.0.8",
     "uniq": "^1.0.1"
