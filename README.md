@@ -2,21 +2,17 @@
 
 Interactive drawing application. 
 
-Todo:
+TODO:
 
-Everything
+Add a video uploader
+Convert video into a lossless image stream
+take an image stream and draw on the frames
+Convert draw frame back into video format
 
-currently looking at drawing libraries to use:
+
+ffmpeg -i input.mp4 -vf fps=1 out%d.png
+
+Future things to mess with:
 Rough.js looks neat
-
-
-might just start out by converting the drawng app here to elm
-https://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mouse
-
 and then merging that with the multiplayer paradigm found here:
 http://buildnewgames.com/real-time-multiplayer/
-
-
-THIS IS IT BOIS:
-https://github.com/Leimi/drawingboard.js/
-
