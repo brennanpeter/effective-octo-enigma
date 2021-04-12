@@ -26,17 +26,23 @@ function makeLayout(){
   canvas.setHeight(500);
   canvas.setWidth(500);
 
-  let uploadVid = document.createElement('button');
-  uploadVid.textContent = "Upload a video";
-  uploadVid.onclick = () => uploadImage();
-  
-  col1.appendChild(uploadVid);
+  // create a form element
+  let form = document.createElement('form');
+  col1.appendChild(form);
 
+  // create the upload button
   let upload = document.createElement('input');
   upload.type = "file";
-  upload.onchange = () =>  encodeImageFileAsURL(upload);
-  
-  col1.appendChild(upload);
+  upload.multiple = true;
+  // upload.onchange = () =>  encodeImageFileAsURL(upload);
+  form.appendChild(upload);
+
+  // create the submit button
+  let submit = document.createElement('input');
+  submit.type = "submit";
+  submit.value = "Submit";
+  upload.onchange = () => encodeImageFileAsURL(upload);
+  form.appendChild(submit);
 
   let expor = document.createElement('button');
   expor.textContent = "Export a video";
@@ -60,11 +66,16 @@ function encodeImageFileAsURL(element) {
   reader.onloadend = function() {
     console.log('RESULT', reader.result)
   }
-  reader.readAsDataURL(file);
+  var count = 0;
+  for (var f in element.files){
+    console.log("count: " + count); 
+    reader.readAsDataURL(f);
+    count = count + 1;
+  }
 }
 
 function Upload(){
-    
+
 }
 
 function addSquareToCanvas(){
