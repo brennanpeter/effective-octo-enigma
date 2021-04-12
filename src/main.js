@@ -3,6 +3,7 @@ const fs = require('fs');
 const ffmpeg = require('ffmpeg');
 const fabric = require("fabric").fabric;
 const fileDialog = require('file-dialog');
+const FormData = require('form-data');
 
 var canvas;
 
@@ -22,14 +23,14 @@ function downloadFiles(e) {
 //load an mp4 file using the dialog
 function uploadImage(){
   var image;
-  var fd = new fileDialog({ accept: 'image/*' })
-    .then(files => {
-        // files contains an array of FileList
-        console.log("We did it bois");
-        console.log(files[0]);
-        var f = new File([files[0]], files[0].name, {type: "image/jpeg"});
+  fileDialog()
+    .then(file => {
+        const data = new FormData()
+        data.append('file', file[0])
+        data.append('imageName', 'flower')
 
-        fabric.Image.fromURL(files[0].name, function(img) {
+        console.log(data);
+        fabric.Image.fromURL(data.toDataURL(), function(img) {
           // add background image
           canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
              scaleX: canvas.width / img.width,

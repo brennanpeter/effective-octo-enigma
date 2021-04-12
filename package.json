@@ -4,10 +4,13 @@
   "description": "TODO:",
   "main": "index.js",
   "dependencies": {
+    "bufferutil": "^4.0.3",
     "fabric": "^4.3.0",
     "ffmpeg": "^0.0.4",
     "file-dialog": "0.0.8",
-    "uniq": "^1.0.1"
+    "form-data": "^4.0.0",
+    "uniq": "^1.0.1",
+    "utf-8-validate": "^5.0.4"
   },
   "devDependencies": {},
   "scripts": {
