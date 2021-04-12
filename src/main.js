@@ -26,9 +26,15 @@ function makeLayout(){
   canvas.setHeight(500);
   canvas.setWidth(500);
 
-  let upload = document.createElement('button');
-  upload.textContent = "Upload a video";
-  upload.onclick = () => uploadImage();
+  let uploadVid = document.createElement('button');
+  uploadVid.textContent = "Upload a video";
+  uploadVid.onclick = () => uploadImage();
+  
+  col1.appendChild(uploadVid);
+
+  let upload = document.createElement('input');
+  upload.type = "file";
+  upload.onchange = () =>  encodeImageFileAsURL(upload);
   
   col1.appendChild(upload);
 
@@ -43,6 +49,18 @@ function makeLayout(){
   col2.style = "border: 1px solid; max-width: fit-content; height: 100%;"
   cols.appendChild(col2);
 
+}
+
+// Shamelessly harvested from: 
+// https://stackoverflow.com/questions/6150289/how-can-i-convert-an-image-into-base64-string-using-javascript
+
+function encodeImageFileAsURL(element) {
+  var file = element.files[0];
+  var reader = new FileReader();
+  reader.onloadend = function() {
+    console.log('RESULT', reader.result)
+  }
+  reader.readAsDataURL(file);
 }
 
 function Upload(){
