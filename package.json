@@ -4,14 +4,14 @@
   "description": "TODO:",
   "main": "index.js",
   "dependencies": {
-    "fabric": "^4.3.1",
-    "ffmpeg": "^0.0.4",
-    "file-dialog": "0.0.8",
-    "uniq": "^1.0.1"
+    "fabric": "^4.4.0",
+    "ffmpeg": "^0.0.4"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify ./src/main.js -o ./public/bundle.js",
+    "debug": "browserify ./src/main.js -d -o ./public/bundle.js && chromium-browser ./public/index.html",
+    "run": "browserify ./src/main.js -o ./public/bundle.js && chromium-browser ./public/index.html"
   },
   "repository": {
     "type": "git",

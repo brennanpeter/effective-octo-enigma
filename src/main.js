@@ -1,46 +1,8 @@
 // import all dependencies from node_modules
-const fs = require('fs');
 const ffmpeg = require('ffmpeg');
 const fabric = require("fabric").fabric;
-const fileDialog = require('file-dialog');
 
 var canvas;
-
-// ********** DOWNLOAD ************
-// yoinked from https://stackoverflow.com/questions/33806624/save-fabricjs-canvas-as-image-on-the-pc
-function downloadFiles(e) {
-  canvas.toDataURL({
-    format: 'png',
-    quality: 0.8
-  });
-
-}
-
-
-// ********* UPLOAD *************
-
-//load an mp4 file using the dialog
-function uploadImage(){
-  var image;
-  var fd = new fileDialog({ accept: 'image/*' })
-    .then(files => {
-        // files contains an array of FileList
-        console.log("We did it bois");
-        console.log(files[0]);
-        var f = new File([files[0]], files[0].name, {type: "image/jpeg"});
-
-        fabric.Image.fromURL(files[0].name, function(img) {
-          // add background image
-          canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
-             scaleX: canvas.width / img.width,
-             scaleY: canvas.height / img.height
-          });
-       });
-
-    })
-
-}
-
 
 function makeLayout(){
   // create a canvas element in the dom
@@ -72,7 +34,7 @@ function makeLayout(){
 
   let expor = document.createElement('button');
   expor.textContent = "Export a video";
-  expor.addEventListener('click', downloadFiles, false);
+  //expor.addEventListener('click', downloadFiles, false);
   col1.appendChild(expor);
 
   // create a second column for the toolbar
@@ -82,6 +44,11 @@ function makeLayout(){
   cols.appendChild(col2);
 
 }
+
+function Upload(){
+    
+}
+
 function addSquareToCanvas(){
   // test drawing a rectangle on the canvas
   var rect = new fabric.Rect({
@@ -105,8 +72,7 @@ function toggleDrawingMode(){
 function main(){
   makeLayout();
   //addSquareToCanvas();
+
   toggleDrawingMode();
-
 }
-
 main();
