@@ -34,15 +34,8 @@ function makeLayout(){
   let upload = document.createElement('input');
   upload.type = "file";
   upload.multiple = true;
-  // upload.onchange = () =>  encodeImageFileAsURL(upload);
-  form.appendChild(upload);
-
-  // create the submit button
-  let submit = document.createElement('input');
-  submit.type = "submit";
-  submit.value = "Submit";
   upload.onchange = () => encodeImageFileAsURL(upload);
-  form.appendChild(submit);
+  form.appendChild(upload);
 
   let expor = document.createElement('button');
   expor.textContent = "Export a video";
@@ -61,17 +54,23 @@ function makeLayout(){
 // https://stackoverflow.com/questions/6150289/how-can-i-convert-an-image-into-base64-string-using-javascript
 
 function encodeImageFileAsURL(element) {
-  var file = element.files[0];
-  var reader = new FileReader();
-  reader.onloadend = function() {
-    console.log('RESULT', reader.result)
+  var files = element.files;
+
+  console.log("Files");
+  console.log(files);
+
+  var i;
+  for (i = 0; i < files.length; i++) {
+    // create a new file reader for each file 
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      console.log('RESULT', reader.result)
+    }
+
+    // read the file
+    reader.readAsDataURL(files[i]);
   }
-  var count = 0;
-  for (var f in element.files){
-    console.log("count: " + count); 
-    reader.readAsDataURL(f);
-    count = count + 1;
-  }
+
 }
 
 function Upload(){
