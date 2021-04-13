@@ -3,6 +3,7 @@ const ffmpeg = require('ffmpeg');
 const fabric = require("fabric").fabric;
 
 var canvas;
+var frames;
 
 function makeLayout(){
   // create a canvas element in the dom
@@ -71,6 +72,7 @@ function handleFiles() {
 
   Promise.all(readers).then((values) => {
     console.log(values);
+    frames = values;
   });
   console.log("Files handled");
 
@@ -117,7 +119,15 @@ function toggleDrawingMode(){
 function main(){
   makeLayout();
   //addSquareToCanvas();
-
   toggleDrawingMode();
+
+  // Calculate the dimensions of the first frame
+
+  // Set the background of canvas to the first frame
+
+  // Set the number of frames in the slider to be correct
+
+   
+
 }
 main();
