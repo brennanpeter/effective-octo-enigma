@@ -70,9 +70,6 @@ function handleFiles() {
   }
 
   Promise.all(readers).then((values) => {
-    // Values will be an array that contains an item
-    // with the text of every selected file
-    // ["File1 Content", "File2 Content" ... "FileN Content"]
     console.log(values);
   });
   console.log("Files handled");
@@ -95,35 +92,6 @@ function readFile(file){
 
     fr.readAsDataURL(file);
   });
-}
-
-
-
-// Shamelessly harvested from: 
-// https://stackoverflow.com/questions/6150289/how-can-i-convert-an-image-into-base64-string-using-javascript
-
-function encodeImageFileAsURL(element) {
-  var files = element.files;
-
-  console.log("Files");
-  console.log(files);
-
-  var i;
-  for (i = 0; i < files.length; i++) {
-    // create a new file reader for each file 
-    var reader = new FileReader();
-    reader.onloadend = function() {
-      console.log('RESULT', reader.result)
-    }
-
-    // read the file
-    reader.readAsDataURL(files[i]);
-  }
-
-}
-
-function Upload(){
-
 }
 
 function addSquareToCanvas(){
