@@ -30,11 +30,19 @@ function makeLayout(){
   let form = document.createElement('form');
   col1.appendChild(form);
 
+
   // create the upload button
   let upload = document.createElement('input');
   upload.type = "file";
   upload.multiple = true;
-  upload.onchange = () => encodeImageFileAsURL(upload);
+
+  // Some great documentation on accessing a FileList object in the browser:
+  // https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications
+
+  //https://ourcodeworld.com/articles/read/1438/how-to-read-multiple-files-at-once-using-the-filereader-class-in-javascript
+  const inputElement = upload;
+  inputElement.addEventListener("change", handleFiles, false);
+
   form.appendChild(upload);
 
   let expor = document.createElement('button');
@@ -49,6 +57,47 @@ function makeLayout(){
   cols.appendChild(col2);
 
 }
+
+function handleFiles() {
+  const fileList = this.files; /* now you can work with the file list */
+  let readers = [];
+  // Abort if there were no files selected
+  if(!fileList.length) return;
+
+  // Store promises in array
+  for(let i = 0;i < fileList.length;i++){
+    readers.push(readFile(fileList[i]));
+  }
+
+  Promise.all(readers).then((values) => {
+    // Values will be an array that contains an item
+    // with the text of every selected file
+    // ["File1 Content", "File2 Content" ... "FileN Content"]
+    console.log(values);
+  });
+  console.log("Files handled");
+
+}
+
+// this read function with promises was copied from
+// https://ourcodeworld.com/articles/read/1438/how-to-read-multiple-files-at-once-using-the-filereader-class-in-javascript
+function readFile(file){
+  return new Promise(function(resolve,reject){
+    let fr = new FileReader();
+
+    fr.onload = function(){
+      resolve(fr.result);
+    };
+
+    fr.onerror = function(){
+      reject(fr);
+    };
+
+    fr.readAsDataURL(file);
+  });
+}
+
+
 
 // Shamelessly harvested from: 
 // https://stackoverflow.com/questions/6150289/how-can-i-convert-an-image-into-base64-string-using-javascript
