@@ -1,3 +1,7 @@
+var detectMobile = require('./detect_mobile.js');
+
+detectMobile.detect();
+
 // import all dependencies from node_modules
 const ffmpeg = require('ffmpeg');
 const fabric = require("fabric").fabric;
@@ -70,6 +74,11 @@ function initializeCanvas(col1){
 
 }
 
+function setCanvasDimensions(h,w){
+  canvas.setHeight(h);
+  canvas.setWidth(w);
+}
+
 function makeLayout(){
   let cols = addToolbarColumns();
   let col1 = cols.childNodes[0];
@@ -137,13 +146,9 @@ function toggleDrawingMode(){
   canvas.isDrawingMode = !(canvas.isDrawingMode)
 }
 
-function setBackground(){
-  
-}
-
 function main(){
   makeLayout();
-  addSquareToCanvas();
+  //addSquareToCanvas();
   toggleDrawingMode();
 
   setBackground();

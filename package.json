@@ -9,9 +9,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify ./src/main.js -o ./public/bundle.js",
-    "debug": "browserify ./src/main.js -d -o ./public/bundle.js && chromium-browser ./public/index.html",
-    "run": "browserify ./src/main.js -o ./public/bundle.js && chromium-browser ./public/index.html"
+    "build": "browserify ./src/* -o ./dist/bundle.js",
+    "debug": "browserify ./src/* -d -o ./dist/bundle.js && chromium-browser ./dist/index.html",
+    "run": "browserify ./src/* -o ./dist/bundle.js && chromium-browser ./dist/index.html"
   },
   "repository": {
     "type": "git",
