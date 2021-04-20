@@ -5,32 +5,16 @@ const fabric = require("fabric").fabric;
 var canvas;
 var frames;
 
-function makeLayout(){
-  // create a canvas element in the dom
-  //let d = document.createElement('div')
-  //d.style.cssText = "width: 100vw; height: 100vh; color: blue; border: 1px solid black; margin: 0; padding: 0;";
-  let cols = document.createElement('div');
-  cols.style = "flex-direction: row;"
-  document.body.appendChild(cols);
-
-  let col1 = document.createElement('div');
-  col1.id = "canvas-wrapper";
-  col1.style = "border: 1px solid; max-width: fit-content; height: 100%;"
-  cols.appendChild(col1);
-
-  let c = document.createElement('canvas')
-  c.id = "c";
-  col1.appendChild(c);
-
-  // link to the canvas with fabric 
-  canvas = new fabric.Canvas('c');
-  canvas.setHeight(500);
-  canvas.setWidth(500);
+// add the import and export buttons to the screen
+function addImportExportButtons(col1){
 
   // create a form element
   let form = document.createElement('form');
   col1.appendChild(form);
 
+  let importExportFlexbox = document.createElement('div');
+  importExportFlexbox.style = "flex-direction: col;"
+  document.body.appendChild(importExportFlexbox);
 
   // create the upload button
   let upload = document.createElement('input');
@@ -44,18 +28,56 @@ function makeLayout(){
   const inputElement = upload;
   inputElement.addEventListener("change", handleFiles, false);
 
-  form.appendChild(upload);
+  importExportFlexbox.appendChild(upload);
 
   let expor = document.createElement('button');
   expor.textContent = "Export a video";
   //expor.addEventListener('click', downloadFiles, false);
-  col1.appendChild(expor);
+  importExportFlexbox.appendChild(expor);
+
+}
+
+function addToolbarColumns(){
+  // create two flexbox columns 
+  let cols = document.createElement('div');
+  cols.style = "flex-direction: row;"
+  document.body.appendChild(cols);
+
+  // left column div
+  let col1 = document.createElement('div');
+  col1.id = "canvas-wrapper";
+  col1.style = "border: 1px solid; max-width: fit-content; height: 100%;"
+  cols.appendChild(col1);
 
   // create a second column for the toolbar
   let col2 = document.createElement('div');
   col2.id = "canvas-wrapper";
   col2.style = "border: 1px solid; max-width: fit-content; height: 100%;"
   cols.appendChild(col2);
+  return cols 
+}
+
+function initializeCanvas(col1){
+  // create a canvas element and add it to the left column
+  let c = document.createElement('canvas')
+  c.id = "c";
+  col1.appendChild(c);
+
+  // link to the canvas with fabric 
+  canvas = new fabric.Canvas('c');
+  canvas.setHeight(500);
+  canvas.setWidth(500);
+
+}
+
+function makeLayout(){
+  let cols = addToolbarColumns();
+  let col1 = cols.childNodes[0];
+  let col2 = cols.childNodes[1];
+
+  initializeCanvas(col1);
+
+  addImportExportButtons(col1);
 
 }
 
@@ -115,19 +137,16 @@ function toggleDrawingMode(){
   canvas.isDrawingMode = !(canvas.isDrawingMode)
 }
 
+function setBackground(){
+  
+}
 
 function main(){
   makeLayout();
-  //addSquareToCanvas();
+  addSquareToCanvas();
   toggleDrawingMode();
 
-  // Calculate the dimensions of the first frame
-
-  // Set the background of canvas to the first frame
-
-  // Set the number of frames in the slider to be correct
-
-   
+  setBackground();
 
 }
 main();
