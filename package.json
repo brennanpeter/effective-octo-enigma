@@ -6,7 +6,8 @@
   "dependencies": {
     "bootstrap": "^4.6.0",
     "fabric": "^4.4.0",
-    "ffmpeg": "^0.0.4"
+    "ffmpeg": "^0.0.4",
+    "progressbar.js": "^1.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

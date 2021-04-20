@@ -1,8 +1,9 @@
+// maybe I want to have users load this separately first
 var detectMobile = require('./detect_mobile.js');
-
 detectMobile.detect();
 
 // import all dependencies from node_modules
+var ProgressBar = require('progressbar.js')
 const ffmpeg = require('ffmpeg');
 const fabric = require("fabric").fabric;
 
@@ -81,13 +82,13 @@ function setCanvasDimensions(h,w){
 
 function makeLayout(){
   let cols = addToolbarColumns();
-  let col1 = cols.childNodes[0];
-  let col2 = cols.childNodes[1];
+  var col1 = cols.childNodes[0];
+  var col2 = cols.childNodes[1];
 
   initializeCanvas(col1);
-
   addImportExportButtons(col1);
-
+  addFrameTimeline(col1);
+  
 }
 
 function handleFiles() {
@@ -146,12 +147,27 @@ function toggleDrawingMode(){
   canvas.isDrawingMode = !(canvas.isDrawingMode)
 }
 
+function addFrameTimeline(col1){
+  let timeline = document.createElement('div');
+  timeline.id = "timeline";
+  timeline.className = "timeline";
+
+  col1.appendChild(timeline);
+  var line = new ProgressBar.Line('#timeline' , {
+        color: '#FCB03C',
+        duration: 3000,
+        easing: 'easeInOut'
+    }); 
+
+  line.animate(1);
+
+}
+
 function main(){
   makeLayout();
   //addSquareToCanvas();
   toggleDrawingMode();
 
-  setBackground();
-
+  //setBackground();
 }
 main();
