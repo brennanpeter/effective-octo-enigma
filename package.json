@@ -4,6 +4,7 @@
   "description": "TODO:",
   "main": "index.js",
   "dependencies": {
+    "bootstrap": "^4.6.0",
     "fabric": "^4.4.0",
     "ffmpeg": "^0.0.4"
   },
